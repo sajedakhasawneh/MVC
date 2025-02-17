@@ -1,0 +1,16 @@
+﻿h1{
+    text-align:center;
+    padding-top: 120px;
+}
+
+body{
+    background-color: azure;
+    height: auto;
+}
+
+
+
+footer {
+    background-color: #343a40;
+    color: white;
+}

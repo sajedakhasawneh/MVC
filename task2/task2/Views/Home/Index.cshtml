@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Home.css" />
+}
+
+@{
+    string[] img = { "https://static01.nyt.com/images/2019/05/12/realestate/10views2/10views2-articleLarge.jpg?quality=75&auto=webp&disable=upscale", 
+    "https://image-tc.galaxy.tf/wijpeg-aiz7v2h8ihiw5f9n2kat5lcpx/empire-hotel-nyc-deluxe-room-two-double-beds_wide.jpg?crop=0%2C73%2C1400%2C788",
+    "https://realestateistra.com/images/nekretnine/i9ozzcrh4zap8dx8v054.jpg" };
+    string[] Title = { "Apartment with amazing Park View", "Double Delux Room - Double Bed", "Luxury Apartment - Ground Floor" };
+    string[] price = { "$45.00", "$35.00", "$40.00" };
+}
+
+
+<div class="container mt-5">
+    <div class="row">
+      
+@for (int i = 0; i < img.Length; i++)
+{
+    <div class="col-md-4 mb-4">
+    <div class="card" style="width: 18rem;">
+        <img src="@img[i]" class="card-img-top" alt="Product Image">
+        <div class="card-body text-center">
+            <h4 class="card-title">@Title[i]</h4>
+            <p class="card-text text-muted price">@price[i]</p>
+            <a href="#" class="btn btn-primary">View</a>
+        </div>
+    </div>
+</div>}
+
+</div>
+</div>
