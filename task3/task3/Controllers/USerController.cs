@@ -17,16 +17,18 @@ namespace task3.Controllers
 
 
         [HttpPost]
-        public IActionResult HandelLogin(string email, string password)
+        public IActionResult HandelLogin()
         {
-            //string Email = "_email";
-            //string Password = "_password";
+            string Email = Request.Form["email"];
+            string Password = Request.Form["password"];
 
 
-            if (email == "user@gmail.com" && password == "123")
+            string stringEmailSession = HttpContext.Session.GetString("useremail");
+                  string stringPasswordSession = HttpContext.Session.GetString("userpassword");
+
+            if (Email == stringEmailSession && Password == stringPasswordSession)
             {
-                HttpContext.Session.SetString("useremail",email);
-                HttpContext.Session.SetString("userpassword", password);
+               
                 return RedirectToAction("Index", "Home");
 
             }
@@ -45,24 +47,20 @@ namespace task3.Controllers
 
 
         [HttpPost]
-        public IActionResult HandelRegister(string email, string password)
+        public IActionResult HandelRegister()
         {
             //string Email = "_email";
             //string Password = "_password";
 
+           
+                HttpContext.Session.SetString("useremail", Request.Form["email"]);
+                HttpContext.Session.SetString("userpassword", Request.Form["password"]);
+                HttpContext.Session.SetString("name", Request.Form["name"]);
+            // return RedirectToAction("Index", "Home");
+           // HttpContext.Session.CommitAsync();
+            return RedirectToAction("Login");
 
-            if (email == "user@gmail.com" && password == "123")
-            {
-                HttpContext.Session.SetString("useremail", email);
-                HttpContext.Session.SetString("userpassword", password);
-                return RedirectToAction("Index", "Home");
 
-            }
-            else
-            {
-                TempData["ErrorMesage"] = "Invalide user name or password";
-                return RedirectToAction("Login");
-            }
         }
 
     }

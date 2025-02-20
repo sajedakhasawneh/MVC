@@ -1,0 +1,21 @@
+﻿.sidebar {
+    height: 150vh;
+    background-color: #343a40;
+    color: white;
+}
+
+    .sidebar a {
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+        display: block;
+    }
+
+        .sidebar a:hover {
+            background-color: #495057;
+        }
+
+footer {
+    background-color: #343a40;
+    color: white;
+}

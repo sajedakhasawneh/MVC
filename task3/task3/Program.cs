@@ -3,17 +3,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-/*session*/
-builder.Services.AddDistributedMemoryCache();
-
-builder.Services.AddSession(options =>
-{
-    options.IdleTimeout = TimeSpan.FromSeconds(10);
-    options.Cookie.HttpOnly = true;
-    options.Cookie.IsEssential = true;
-}); 
-/**/
-
+builder.Services.AddDistributedMemoryCache(); // Enables caching
+builder.Services.AddSession(); // Enables session
+builder.Services.AddHttpContextAccessor(); // Allows access to HttpContext
 
 
 var app = builder.Build();
@@ -32,6 +24,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseSession(); // Use session in middleware
 
 /*session*/
 app.UseSession();
