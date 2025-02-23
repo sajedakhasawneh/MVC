@@ -12,32 +12,53 @@ namespace task3.Controllers
         }
         public IActionResult Login()
         {
-            return View();
+            //var data = Request.Cookies["userInfo"];
+            //if (data != null)
+            //    return RedirectToAction("Index", "Home");
+            //else
+                return View();
         }
 
 
         [HttpPost]
-        public IActionResult HandelLogin()
+        public IActionResult HandelLogin(string email, string password, string rememberme)
         {
+            //task3
             string Email = Request.Form["email"];
             string Password = Request.Form["password"];
-
+            bool rememberMe = Request.Form["rememberMe"] == "on";
 
             string stringEmailSession = HttpContext.Session.GetString("useremail");
                   string stringPasswordSession = HttpContext.Session.GetString("userpassword");
 
             if (Email == stringEmailSession && Password == stringPasswordSession)
+            { 
+                if (rememberMe)
             {
-               
+                CookieOptions cookieobj = new CookieOptions();
+                cookieobj.Expires = DateTime.Now.AddDays(7);
+                //store
+                Response.Cookies.Append("useremail", Email, cookieobj);
+                Response.Cookies.Append("userpassword", Password, cookieobj);
+            }
+
+
+           
+
                 return RedirectToAction("Index", "Home");
 
             }
+
             else
             {
                 TempData["ErrorMesage"] = "Invalide user name or password";
                 return RedirectToAction("Login");
             }
+
+      
         }
+
+        
 
 
         public IActionResult Register()
@@ -61,6 +82,18 @@ namespace task3.Controllers
             return RedirectToAction("Login");
 
 
+        }
+
+        public IActionResult Logout()
+        {
+           
+            HttpContext.Session.Clear();
+
+    
+            Response.Cookies.Delete("useremail");
+            Response.Cookies.Delete("userpassword");
+
+            return RedirectToAction("Login");
         }
 
     }

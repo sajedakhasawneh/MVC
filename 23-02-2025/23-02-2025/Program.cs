@@ -1,18 +1,13 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
+using _23_02_2025.Models;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
-//cookies
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie();
-
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDistributedMemoryCache(); // Enables caching
-builder.Services.AddSession(); // Enables session
-builder.Services.AddHttpContextAccessor(); // Allows access to HttpContext
+builder.Services.AddDbContext<MyDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("MyConnectionString")));
 
 
 var app = builder.Build();
@@ -31,18 +26,6 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-app.UseSession(); // Use session in middleware
-
-/*session*/
-app.UseSession();
-/**/
-
-
-//cookies
-app.UseAuthentication();
-//app.MapRazorPages();
-app.MapDefaultControllerRoute();
-
 
 app.MapControllerRoute(
     name: "default",
