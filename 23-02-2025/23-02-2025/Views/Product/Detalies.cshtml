@@ -1,0 +1,33 @@
+﻿@model _23_02_2025.Models.Product
+
+
+<h1>Product Details</h1>
+
+<div>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <img src="@Url.Content(Model.Img)" alt="Product Image" width="100" height="100" />
+            </tr>
+
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Title)</th>
+                <td>@Html.DisplayFor(model => model.Title)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.ProductDescription)</th>
+                <td>@Html.DisplayFor(model => model.ProductDescription)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Price)</th>
+                <td>@Html.DisplayFor(model => model.Price)</td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
