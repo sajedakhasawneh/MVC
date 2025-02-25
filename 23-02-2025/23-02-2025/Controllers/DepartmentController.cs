@@ -32,5 +32,20 @@ namespace _23_02_2025.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public IActionResult DepartmentEmail()
+        {
+           
+            var department = _context.Departments
+                                     .FirstOrDefault(d => d.Email == "it@company.com");
+
+            if (department == null)
+            {
+                return NotFound("Department not found with this email.");
+            }
+
+            
+            return View(department); 
+        }
     }
 }

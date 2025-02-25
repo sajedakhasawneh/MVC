@@ -17,6 +17,12 @@ namespace _23_02_2025.Controllers
         {
             return View(_context.Users.ToList());
         }
+    
+        public IActionResult Home(int id)
+        {
+            var user = _context.Users.FirstOrDefault();
+            return View(user);
+        }
 
         public IActionResult Create()
         {
@@ -30,7 +36,21 @@ namespace _23_02_2025.Controllers
 
             _context.Add(user);
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Login");
         }
+
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(User user)
+        {
+            //if (user.Email = )
+            return RedirectToAction("Home");
+        }
+
     }
 }

@@ -1,0 +1,33 @@
+﻿@model _23_02_2025.Models.Department
+@{
+    ViewData["Title"] = "DepartmentEmail";
+}
+
+<h1>Department Email</h1>
+
+
+
+
+<table class="table">
+    <tbody>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <td>@Html.DisplayFor(model => model.Name)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Location)</th>
+            <td>@Html.DisplayFor(model => model.Location)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.EmployeeCount)</th>
+            <td>@Html.DisplayFor(model => model.EmployeeCount)</td>
+        </tr>
+
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Email)</th>
+            <td>@Html.DisplayFor(model => model.Email)</td>
+        </tr>
+
+
+    </tbody>
+</table>

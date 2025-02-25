@@ -1,0 +1,48 @@
+﻿@model IEnumerable<_25_02_2025.Models.User>
+
+@{
+    ViewData["Title"] = "LisrOfUsers";
+    Layout = "/Views/Shared/Admin.cshtml";
+}
+
+<h1>List Of Users</h1>
+
+<p>
+    <a asp-action="AdminCreate">Create New User</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoleType)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleType)
+            </td>
+            <td>
+                <a asp-action="EditAdmin" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="UserInfo" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
